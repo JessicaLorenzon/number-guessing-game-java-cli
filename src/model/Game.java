@@ -1,20 +1,31 @@
 package model;
 
-import service.Level;
-
-import java.util.Random;
+import util.RandomNumberGenerator;
 
 public class Game {
 
     private Level level;
-    Random randNumber = new Random();
+    private Integer attempts;
+    private final Integer randomNumber;
 
-    public Game(Level level) {
+    public Game() {
+        this.attempts = 0;
+        this.randomNumber = new RandomNumberGenerator().getNumber();
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
         this.level = level;
     }
 
-    public void run() {
-
+    public Integer getAttempts() {
+        return attempts;
     }
 
+    public Integer getRandomNumber() {
+        return randomNumber;
+    }
 }

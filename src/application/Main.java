@@ -1,11 +1,11 @@
 package application;
 
-import controller.CliController;
+import controller.GameController;
 
 public class Main {
 
-//    CliController cliController = new CliController();
-//    cliController.play();
+    public static void main(String[] args) {
 
-
+        new GameController().play();
+    }
 }
