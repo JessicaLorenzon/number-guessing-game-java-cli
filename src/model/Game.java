@@ -25,6 +25,10 @@ public class Game {
         return attempts;
     }
 
+    public void incrementAttempts() {
+        this.attempts = attempts + 1;
+    }
+
     public Integer getRandomNumber() {
         return randomNumber;
     }

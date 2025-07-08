@@ -11,19 +11,17 @@ import java.util.Scanner;
 public class GameController {
     View view = new View();
     Scanner scanner = new Scanner(System.in);
+    Game game = new Game();
 
     public void play() {
-
-        Game game = new Game();
-
         view.displayWelcome();
 
-        selectLevel(game);
+        selectLevel();
 
-        rounds(game);
+        rounds();
     }
 
-    public void selectLevel(Game game) {
+    public void selectLevel() {
         view.displayEnterChoice();
         int numberLevel = scanner.nextInt();
         view.addLineBreak();
@@ -42,23 +40,22 @@ public class GameController {
         view.displayStartGame(game.getLevel().getLevelName(), game.getLevel().getNumberOfChances());
     }
 
-    public void rounds(Game game) {
-        int attempts = game.getAttempts();
-        while (attempts < game.getLevel().getNumberOfChances()) {
+    public void rounds() {
+        while (game.getAttempts() < game.getLevel().getNumberOfChances()) {
             view.displayEnterGuess();
             Integer guess = scanner.nextInt();
 
             if (game.getRandomNumber().equals(guess)) {
-                view.displayCorrectGuess(attempts + 1);
+                view.displayCorrectGuess(game.getAttempts() + 1);
                 return;
             } else {
                 view.displayIncorrectGuess(guess, game.getRandomNumber());
                 view.addLineBreak();
             }
-            attempts++;
+            game.incrementAttempts();
         }
 
-        if (game.getLevel().getNumberOfChances().equals(attempts)) {
+        if (game.getLevel().getNumberOfChances().equals(game.getAttempts())) {
             view.displayGameOver(game.getLevel().getNumberOfChances());
         }
     }
